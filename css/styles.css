@@ -1,0 +1,91 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+button[type="submit"] {
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 0;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button[type="submit"]:hover {
+    background-color: #4cae4c;
+}
+
+a{
+    text-decoration: none;
+    font-weight: bold;         /* Hacer la letra un poco más gorda */
+    color: #2a73c2da               /* Definir el color azul */
+}
+
+/* Styles for the dashboard */
+.dashboard {
+    text-align: center;
+}
+
+.dashboard a {
+    text-decoration: none;
+    color: #5cb85c;
+    font-size: 18px;
+}
+
+.error {
+    color: red;
+    background-color: #fdd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid red;
+    border-radius: 5px;
+}
+
+.success {
+    color: green;
+    background-color: #dfd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid green;
+    border-radius: 5px;
+}

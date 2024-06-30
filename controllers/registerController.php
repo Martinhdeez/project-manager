@@ -1,0 +1,49 @@
+<?php
+// Incluir los archivos necesarios
+include '../config/db.php';
+include '../models/user.php';
+session_start(); // Iniciar la sesión
+
+// Verificar si el formulario fue enviado
+if (isset($_POST['register_submit'])) {
+    // Crear una instancia de la clase Database y establecer la conexión
+    $database = new Db();
+    $db = $database->connect();
+
+    if ($db) { // Asegurarse de que la conexión se estableció correctamente
+        // Crear una instancia del modelo User
+        $user = new User($db);
+        // Asignar los valores del formulario a las propiedades del modelo User
+        $user->username = $_POST['username'];
+        $user->email = $_POST['email'];
+        $user->password = $_POST['password'];
+
+        // Almacenar los datos del formulario en la sesión
+        $_SESSION['form_data'] = [
+            'username' => $_POST['username'],
+            'email' => $_POST['email']
+        ];
+
+        // Llamar al método register del modelo User
+        $result = $user->register();
+
+        // Verificar si el registro fue exitoso
+        if ($result === true) {
+            // Limpiar los datos del formulario de la sesión
+            unset($_SESSION['form_data']);
+            // Redirigir al usuario a la página de inicio de sesión con un mensaje de éxito
+            $_SESSION['success'] = "Registration successful! Please log in.";
+            header("Location: ../views/login.php?registration=success");
+            exit();
+        } else {
+            //mensaje de error
+            $_SESSION['error'] = $result; // Almacenar el mensaje de error en la sesión
+        }
+    } else {
+        $_SESSION['error'] = "Failed to connect to the database."; // Mensaje de error si la conexión falla
+    }
+}
+
+header("Location: ../views/register.php"); // Redirigir de vuelta a la página de registro para mostrar el mensaje
+exit();
+
