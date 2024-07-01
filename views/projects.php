@@ -27,7 +27,7 @@ include '../includes/functions.php';
         <ul>
         <?php displayProjects($_SESSION['user_id']); ?>
         </ul>
-        
+        <a href="../index.php">back home</a>
         <a href="../controllers/LogoutController.php" class="btn">Logout</a>
     </div>
 </body>
