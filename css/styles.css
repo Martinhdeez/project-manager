@@ -58,7 +58,7 @@ button[type="submit"]:hover {
 a {
     text-decoration: none;
     font-weight: bold;
-    color: #2a73c2; /* Define el color azul */
+    color: #2a73c2; 
 }
 
 /* Styles for the dashboard */
@@ -117,7 +117,7 @@ a {
     padding: 10px 20px;
     margin: 10px 0;
     font-size: 16px;
-    color: white;
+    color: white !important;
     background-color: #5cb85c;
     border: none;
     border-radius: 5px;
@@ -160,6 +160,7 @@ form input {
 form button {
     font-size: 18px;
     padding: 12px;
+    color: white;
 }
 
 a.link {

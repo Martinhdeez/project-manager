@@ -3,7 +3,7 @@ include '../config/db.php';
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $title = $_POST['title']; // Cambiado de 'name' a 'title'
+    $title = $_POST['title']; 
     $description = $_POST['description'];
     $user_id = $_SESSION['user_id'];
 
