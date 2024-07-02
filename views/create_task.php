@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
-    <form action="../controllers/createTaskController.php"  method="post">
+    <form action="../controllers/createTaskController.php" value=" <?php echo $_GET['project_id'];?>  method="post">
         <h2>Create new task</h2>
         <label for="title">Task Title:</label> 
         <input type="text" id="title" name="title" required> 
@@ -17,7 +17,7 @@
         <textarea id="description" name="description"></textarea>
         <br>
         <button type="task_submit" class="btn">Create Task</button>
-        <a href="tasks.php">Back to Tasks</a>
+        <a href="project.php?id=<?php echo htmlspecialchars($_GET['project_id']); ?>" class="btn">Back to Project</a>
     </form>
 </body>
 </html>

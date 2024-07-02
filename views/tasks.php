@@ -1,5 +1,5 @@
-<?php 
-include '../auth/auth.php'; 
+<?php
+include '../auth/auth.php';
 include '../includes/functions.php';
 ?>
 
@@ -8,18 +8,18 @@ include '../includes/functions.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects</title>
+    <title>Tasks</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
     <div class="dashboard">
-        <h2>Projects</h2>
+        <h2>Tasks</h2>
         <?php
             success();
         ?>
-        <a href="create_project.php" class="btn">Create New Project</a>
+        <a href="create_task.php" class="btn">Create New Task</a>
         <ul>
-        <?php displayProjects($_SESSION['user_id']); ?>
+        <?php displayTasks($_SESSION['project_id']); ?>
         </ul>
         <a href="../index.php">back home</a>
         <a href="../controllers/LogoutController.php" class="btn">Logout</a>
