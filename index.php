@@ -12,7 +12,7 @@ include 'parts/header.php';
             <h2 class="mt-5 mb-3">Your Projects</h2>
             <?php success(); ?>
             <a href="views/create_project.php" class="btn btn-primary mb-3">Create New Project</a>
-            <ul class="list-group" style="list-style-type: none; ">
+            <ul  class="row list-unstyled" id="projects-container">
                 <?php displayProjects($_SESSION['user_id']); //llamo a la función que muestra los proyectos del usuario ?>
             </ul>
 

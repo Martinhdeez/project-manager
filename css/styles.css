@@ -1,7 +1,58 @@
-/* General Styles */
-#project a{
+
+#project {
+    text-align: center;
+    margin-bottom: 20px;
     text-decoration: none;
-    font-size: 14px;
+    list-style: none;
+}
+#project img {
+    
+    height: 180px;
+    width: 350px;
+    margin-bottom: 10px;
+}
+#project a {
+    text-decoration: none;
+    font-size: 20px;
     font-weight: bold;
     color: black;
+    display: block;
+}
+
+.xdashboard {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+.xdashboard h2 {
+    margin-bottom: 20px;
+}
+.xdashboard ul {
+    padding-left: 20px;
+    list-style-type: none;
+    padding-left: 0;
+}
+.xdashboard ul li {
+    list-style-type: none;
+    background-color: #e9ecef;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: left; 
+}
+.xdashboard a.btn {
+    margin: 10px 5px;
+}
+
+.xdashboard img{
+    height: 180px !important;
+    width: 350px !important;
+    margin-bottom: 10px !important;
+    display: block; /* Hace que la imagen sea un bloque */
+    margin-left: auto;
+    margin-right: auto;
 }

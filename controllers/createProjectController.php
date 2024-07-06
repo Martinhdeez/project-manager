@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['error'] = "Error creating project.";
         }
 
-    header("Location: ../views/projects.php");
+    header("Location: ../index.php");
     exit();
     }
 
