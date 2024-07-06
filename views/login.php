@@ -6,6 +6,7 @@ require("../parts/header.php");
             <h2 class="mb-4">User Login</h2>
             <?php
                 session_start();
+                
                 if (isset($_SESSION['error'])) {
                     echo "<div class='alert alert-danger'>" . htmlspecialchars($_SESSION['error']) . "</div>";
                     unset($_SESSION['error']); // Limpiar el mensaje de error después de mostrarlo

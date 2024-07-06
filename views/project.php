@@ -50,6 +50,10 @@ $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
         } ?>
         </ul>
 
+        <form action="../controllers/deleteProjectController.php" method="post">
+            <input type="hidden" name="project_id" value="<?php echo $projectId; ?>">
+            <button type="submit" class="btn btn-danger">Delete Project</button>
+        </form>
         <a href="projects.php" class="btn btn-secondary">Back to Projects</a>
         <a href="../controllers/LogoutController.php" class="btn btn-danger">Logout</a>
     </div>
