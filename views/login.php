@@ -1,5 +1,5 @@
 <?php
-include("../parts/header.php");
+require("../parts/header.php");
 ?>
     <div class="container mt-5">
         <form action="../controllers/LoginController.php" class="form" method="post">

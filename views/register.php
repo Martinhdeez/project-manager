@@ -1,5 +1,5 @@
 <?php
-include("../parts/header.php");
+require("../parts/header.php");
 ?>
 <body>
     <form action="../controllers/registerController.php" method="post">

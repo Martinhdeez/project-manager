@@ -1,17 +1,15 @@
 <?php
-include '../config/db.php';
+require '../config/db.php';
 session_start();
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     $title = $_POST['title'];
     $description = $_POST['description'];
-    $project_id = $_POST['project_id'];
+    $project_id = $_GET['project_id'];
 
     $database = new Db();
     $db = $database->connect();
-
- 
     try {
         $stmt = $db->prepare("INSERT INTO tasks (title, description, project_id) VALUES (?, ?, ?)");
         if ($stmt->execute([$title, $description, $project_id])) {

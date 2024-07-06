@@ -1,6 +1,6 @@
 <?php 
-include '../auth/auth.php';
-include '../parts/header.php';
+require '../auth/auth.php';
+require '../parts/header.php';
 ?>
     
     <div class="container mt-5">

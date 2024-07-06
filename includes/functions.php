@@ -1,5 +1,5 @@
 <?php
-    include __DIR__ . '/../config/db.php';
+    require __DIR__ . '/../config/db.php';
 
     define('BASE_URL', '/project_manager'); 
      // Define la URL base de tu aplicación

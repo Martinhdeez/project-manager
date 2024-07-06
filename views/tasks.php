@@ -1,7 +1,7 @@
 <?php
-include '../auth/auth.php';
-include '../includes/functions.php';
-include '../parts/header.php';
+require '../auth/auth.php';
+require '../includes/functions.php';
+require '../parts/header.php';
 ?>
 <body>
     <div class="dashboard">

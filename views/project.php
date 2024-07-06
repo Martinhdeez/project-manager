@@ -1,6 +1,6 @@
 <?php
-include '../auth/auth.php';
-include '../config/db.php';
+require '../auth/auth.php';
+require '../config/db.php';
 
 // Verificar si el ID del proyecto está presente en la URL
 if (!isset($_GET['id'])) {

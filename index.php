@@ -1,7 +1,7 @@
 <?php 
-include 'auth/auth.php'; 
-include 'includes/functions.php';
-include 'parts/header.php';
+require 'auth/auth.php'; 
+require 'includes/functions.php';
+require 'parts/header.php';
 ?>
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
         <div class="dashboard text-center">
