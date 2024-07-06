@@ -1,16 +1,8 @@
 <?php 
 include 'auth/auth.php'; 
 include 'includes/functions.php';
+include 'parts/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Project Management Dashboard - Manage Your Projects</title>
-    <meta name="description" content="Manage your projects efficiently with our project management dashboard. Track progress, assign tasks, and collaborate with your team.">
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
 <div class="dashboard">
     
     <h1>Welcome <?php echo htmlspecialchars($_SESSION['username']);?> , to Your Project Management Dashboard</h1>

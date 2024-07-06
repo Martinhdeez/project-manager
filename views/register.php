@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/styles.css">
-    <title>Register</title>
-</head>
+<?php
+include("../parts/header.php");
+?>
 <body>
     <form action="../controllers/registerController.php" method="post">
         <h2>User Registration</h2>

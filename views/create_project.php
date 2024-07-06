@@ -1,26 +1,27 @@
-<?php include '../auth/auth.php'; ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create task</title>
-    <title>Create Project</title>
-    <link rel="stylesheet" href="../css/styles.css">
-</head>
-<body>
+<?php 
+include '../auth/auth.php';
+include '../parts/header.php';
+?>
     
-    <form action="../controllers/createProjectController.php" method="post">
-        <h2>Create New Project</h2>
-        <label for="title">Project Title:</label> 
-        <input type="text" id="title" name="title" required> 
-        <br>
-        <label for="description">Description:</label>
-        <textarea id="description" name="description"></textarea>
-        <br>
-        <button type="submit">Create Project</button>
-        <a href="projects.php">Back to Projects</a>
-    </form>
-    
+    <div class="container mt-5">
+        <form action="../controllers/createProjectController.php" method="post" class="form" enctype="multipart/form-data">
+            <h2 class="mb-4">Create New Project</h2>
+            <div class="mb-3">
+                <label for="title" class="form-label">Project Title:</label>
+                <input type="text" id="title" name="title" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description:</label>
+                <textarea id="description" name="description" class="form-control" rows="4"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="cover_path" class="form-label">Project Cover:</label>
+                <input type="file" id="cover_path" name="cover_path" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Create Project</button>
+            <a href="projects.php" class="btn btn-secondary ms-2">Back to Projects</a>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

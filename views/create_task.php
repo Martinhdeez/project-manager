@@ -1,12 +1,8 @@
-<?php include '../auth/auth.php'; ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create task</title>
-    <link rel="stylesheet" href="../css/styles.css">
-</head>
+<?php 
+include '../auth/auth.php'; 
+include '../parts/header.php';
+?>
+
 <body>
     <form action="../controllers/createTaskController.php" value=" <?php echo $_GET['project_id'];?>  method="post">
         <h2>Create new task</h2>
