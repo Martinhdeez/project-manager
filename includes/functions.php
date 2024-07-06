@@ -1,15 +1,15 @@
 <?php
     include __DIR__ . '/../config/db.php';
 
-    define('BASE_URL', '/project_manager');  // Define la URL base de tu aplicación
-function displayProjects($userId){
-
+    define('BASE_URL', '/project_manager'); 
+     // Define la URL base de tu aplicación
+function displayProjects($userId) {
     $database = new Db();
-    $db = $database->connect();//devuelve conn
-    $result = $db->query("SELECT * FROM projects WHERE user_id = " .$userId);//prepara consula para obtener proyectos del usuario
+    $db = $database->connect(); // devuelve conn
+    $result = $db->query("SELECT * FROM projects WHERE user_id = " . $userId); // prepara consulta para obtener proyectos del usuario
 
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {//bucle para mostrar todos los proyectos del usuario
-    echo "<li><a href='" . BASE_URL . "/views/project.php?id=" . $row['id'] . "'>" . htmlspecialchars($row['title']) . "</a></li>";//cada proyecto del usuario
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) { // bucle para mostrar todos los proyectos del usuario
+        echo "<a href='" . BASE_URL . "/views/project.php?id=" . $row['id'] . "' class='list-group-item list-group-item-action text-black fw-bold fs-5'>" . htmlspecialchars($row['title']) . "</a>"; // cada proyecto del usuario
     }
 }
 

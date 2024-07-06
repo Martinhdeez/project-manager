@@ -15,8 +15,8 @@ include '../parts/header.php';
                 <textarea id="description" name="description" class="form-control" rows="4"></textarea>
             </div>
             <div class="mb-3">
-                <label for="cover_path" class="form-label">Project Cover:</label>
-                <input type="file" id="cover_path" name="cover_path" class="form-control">
+                <label for="cover" class="form-label">Project Cover:</label>
+                <input type="file" id="cover" name="cover" class="form-control">
             </div>
             <button type="submit" class="btn btn-success">Create Project</button>
             <a href="projects.php" class="btn btn-secondary ms-2">Back to Projects</a>
