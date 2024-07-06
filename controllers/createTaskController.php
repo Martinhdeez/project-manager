@@ -6,7 +6,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     $title = $_POST['title'];
     $description = $_POST['description'];
-    $project_id = $_GET['project_id'];
+    $project_id = $_POST['project_id'];
 
     $database = new Db();
     $db = $database->connect();
@@ -21,6 +21,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['error'] = "Database error: " . $e->getMessage();
     }
 
-    header("Location: ../views/project.php?=id=". $project_id);
+    header("Location: ../views/project.php?id=". $project_id);
     exit();
 }
