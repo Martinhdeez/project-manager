@@ -9,7 +9,14 @@ function displayProjects($userId) {
     $result = $db->query("SELECT * FROM projects WHERE user_id = " . $userId); // prepara consulta para obtener proyectos del usuario
 
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) { // bucle para mostrar todos los proyectos del usuario
-        echo "<a href='" . BASE_URL . "/views/project.php?id=" . $row['id'] . "' class='list-group-item list-group-item-action text-black fw-bold fs-5'>" . htmlspecialchars($row['title']) . "</a>"; // cada proyecto del usuario
+        echo "
+        <li class='list-group-item' id='project'>
+        <a href='" . BASE_URL . "/views/project.php?id=" . $row['id'] . " class= 'list-group-item-action text-black fw-bold fs-5'>
+        <img src='" . BASE_URL . "/project_covers/" . $row['cover_name'] . "' class='img-fluid me-2'  style='max-height: 250px;'>
+        " . htmlspecialchars($row['title']) . "
+        </a>
+        </li>";
+
     }
 }
 

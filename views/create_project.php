@@ -19,7 +19,7 @@ include '../parts/header.php';
                 <input type="file" id="cover" name="cover" class="form-control">
             </div>
             <button type="submit" class="btn btn-success">Create Project</button>
-            <a href="projects.php" class="btn btn-secondary ms-2">Back to Projects</a>
+            <a href="../index.php" class="btn btn-secondary ms-2">Back to Projects</a>
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
