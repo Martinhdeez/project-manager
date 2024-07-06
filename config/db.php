@@ -13,7 +13,7 @@ class Db{
 
         try {
             // Intentar crear una nueva conexión PDO con los detalles proporcionados
-            $this->conn = new PDO('mysql:host=' . $this->servername . ';dbname=' . $this->dbname, $this->username, $this->password);
+            $this->conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
             // Establecer el modo de error de PDO para que lance excepciones
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch(PDOException $e) {
