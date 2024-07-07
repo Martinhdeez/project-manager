@@ -90,3 +90,14 @@
     text-align: center;
 }
 
+#task{
+    padding-left: 175px !important;
+    padding-right: 40px !important;
+    justify-content: center;
+    text-align: center;
+}
+#task_title{
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}

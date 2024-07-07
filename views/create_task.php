@@ -16,6 +16,19 @@ require '../parts/header.php';
                         <label for="description">Description:</label>
                         <textarea id="description" name="description" class="form-control"></textarea>
                     </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="end_date">End Date:</label>
+                        <input type="date" name="end_date" id="end_date">
+                    </div>
+                    <div class="form-group">
+                        <label for="priority">Priority:</label>
+                        <select id="priority" name="priority" class="form-control">
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
                     <button type="submit" class="btn btn-success">Create Task</button>
                     <a href="project.php?id=<?php echo htmlspecialchars($_GET['project_id']); ?>" class="btn btn-secondary">Back to Project</a>
                 </form>
