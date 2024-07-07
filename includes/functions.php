@@ -33,14 +33,22 @@ function success() {
 }
 
 function displayTasks($tasks){
+    
     foreach ($tasks as $task) {
-        echo "<li id='task' class='list-group-item d-flex justify-content-between align-items-center'>
-        <span id='task_title' class='flex-grow-1 text-center'>" . htmlspecialchars($task['title']) . "</span>
-        <div class='d-flex align-items-center'>
-            <span class='badge bg-primary me-2'>" . htmlspecialchars($task['priority']) . "</span>
-            <span class='text-muted'>" . htmlspecialchars($task['end_date']) . "</span>
-        </div>
+        $tags = explode(',', $task['tags']);
+        echo "<li id='task' class='list-group-item list-group-item-action d-flex justify-content-between align-items-center'>
+        <a href='task.php?id=" . $task['id'] . "' class='d-flex justify-content-between align-items-center w-100 text-decoration-none text-dark'>
+            <span id='task_title' class='flex-grow-1 text-center'>" . htmlspecialchars($task['title']) . "</span>
+            <div class='d-flex align-items-center'>";
+                foreach($tags as $tag){
+                echo "<span class='badge bg-info me-4'>" . htmlspecialchars($tag) . "</span>";
+                }
+                echo "  <span class='badge bg-primary me-4'>" . htmlspecialchars($task['priority']) . "</span>
+                        <span class='text-muted'>" . htmlspecialchars($task['end_date']) . "</span>
+            </div>
+        </a>
         </li>";
+
     }
 }
 

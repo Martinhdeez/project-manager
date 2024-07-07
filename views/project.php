@@ -45,6 +45,7 @@ $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <p class="lead"><?php echo htmlspecialchars($project['description']); ?></p>
 
         <h3>Tasks</h3>
+        <?php success(); ?>
         <a href="create_task.php?project_id=<?php echo $projectId; ?>" class="btn btn-success mb-3">Create New Task</a>
         <ul class="list-group mb-3">
         <?php displayTasks($tasks);?>

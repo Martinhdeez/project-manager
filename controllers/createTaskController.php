@@ -9,12 +9,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $project_id = $_POST['project_id'];
     $end_date= $_POST['end_date'];
     $priority= $_POST['priority'];
+    $tags = $_POST['tags'];
 
     $database = new Db();
     $db = $database->connect();
     try {
-        $stmt = $db->prepare("INSERT INTO tasks (title, description, project_id, end_date, priority) VALUES (?, ?, ?, ?, ?)");
-        if ($stmt->execute([$title, $description, $project_id, $end_date, $priority])) {
+        $stmt = $db->prepare("INSERT INTO tasks (title, description, project_id, end_date, priority, tags) VALUES (?, ?, ?, ?, ?, ?)");
+        if ($stmt->execute([$title, $description, $project_id, $end_date, $priority, $tags])) {
             $_SESSION['success'] = "Task created successfully!";
         } else {
             $_SESSION['error'] = "Error creating task.";

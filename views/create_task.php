@@ -1,6 +1,7 @@
 <?php 
 require_once'../auth/auth.php'; 
 require '../parts/header.php';
+
 ?>
     <div class="container mt-5">
         <div class="card">
@@ -28,6 +29,10 @@ require '../parts/header.php';
                             <option value="Medium">Medium</option>
                             <option value="High">High</option>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tags" class="form-label">Tags (comma separated): </label>
+                        <input type="text" class="form-control" id="tags" name="tags" placeholder="ex: work,urgent,home">
                     </div>
                     <button type="submit" class="btn btn-success">Create Task</button>
                     <a href="project.php?id=<?php echo htmlspecialchars($_GET['project_id']); ?>" class="btn btn-secondary">Back to Project</a>
