@@ -10,9 +10,17 @@
     $database= new Db();
     $db= $database->connect();
 
+    // Añadir depuración para verificar el ID de la tarea
+    error_log("Task ID: " . $taskId);
+
     $stmt = $db->prepare("SELECT * FROM tasks WHERE id= ?");
     $stmt->execute([$taskId]);
     $task = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$task) {
+        error_log("Task not found for ID: " . $taskId);
+        die('Task not found.');
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +68,7 @@
 
                         <strong>Notes:</strong>
                         <form action="../controllers/notesController.php" method="post">
-                            <input type="hidden" name="id" value="<?php echo htmlspecialchars($task['id']); ?>">
+                            <input type="hidden" name="id" value="<?php echo $taskId; ?>">
                             <div class="mb-3">
                                 <label for="existing_notes" class="form-label text-secondary text-decoration-underline">Task Notes</label>
                                 <textarea id="existing_notes" name="existing_notes" class="form-control" rows="5" readonly><?php echo htmlspecialchars($task['notes']); ?></textarea>
@@ -70,7 +78,13 @@
                                 <textarea id="new_note" name="new_note" class="form-control" rows="3"></textarea>
                             </div>
                             <button type="submit" name="submit_notes" class="btn btn-primary">Save Note</button>
-                            <a href="project.php?id=<?php echo htmlspecialchars($task['project_id']);?>"  class="btn btn-secondary" >Back to <?php echo htmlspecialchars($task['title']); ?></a>
+                            
+                            <form action="../controllers/deleteTaskController.php" method="post">
+                                <input type="hidden" name="project_id" value="<?php echo htmlspecialchars($task['project_id']); ?>">
+                                <input type="hidden" name="id" value="<?php echo $taskId; ?>">
+                                <button type="submit" class="btn btn-danger ml-2">Delete Task</button>
+                            </form>
+                            <a href="project.php?id=<?php echo htmlspecialchars($task['project_id']);?>"  class="btn btn-secondary mt-2" >Back to <?php echo htmlspecialchars($task['title']); ?></a>
                         </form>
                     </li>
                 </ul>

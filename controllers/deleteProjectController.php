@@ -35,7 +35,7 @@ if(isset($_POST['project_id'])){
 
 } else {
     $_SESSION['error'] = "Invalid request.";
-    header("Location: ../views/projects.php");
+    header("Location: ../index.php");
     exit();
 }
 
