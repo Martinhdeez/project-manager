@@ -3,7 +3,7 @@
     require_once '../config/db.php';
 
     if(!isset($_GET['id'])){
-        die('Project ID is missing.');
+        die('Task ID is missing.');
     }
     $taskId = $_GET['id'];
     
@@ -33,15 +33,19 @@
                     <li class="list-group-item">
                         <strong>Status:</strong> <?php echo htmlspecialchars($task['status']); ?>
                     </li>
+
                     <li class="list-group-item">
                         <strong>Created At:</strong> <?php echo htmlspecialchars($task['created_at']); ?>
                     </li>
+
                     <li class="list-group-item">
                         <strong>End Date:</strong> <?php echo htmlspecialchars($task['end_date']); ?>
                     </li>
+
                     <li class="list-group-item">
                         <strong>Priority:</strong> <span class="badge bg-primary"><?php echo htmlspecialchars($task['priority']); ?></span>
                     </li>
+
                     <li class="list-group-item">
                         <strong>Tags:</strong> 
                         <?php 
@@ -51,19 +55,22 @@
                         }
                         ?>
                     </li>
+
                     <li class="list-group-item">
+
                         <strong>Notes:</strong>
-                        <form action="save_notes.php" method="post">
-                            <input type="hidden" name="task_id" value="<?php echo htmlspecialchars($task['id']); ?>">
+                        <form action="../controllers/notesController.php" method="post">
+                            <input type="hidden" name="id" value="<?php echo htmlspecialchars($task['id']); ?>">
                             <div class="mb-3">
-                                <label for="existing_notes" class="form-label">Existing Notes</label>
-                                <textarea id="existing_notes" class="form-control" rows="5" readonly><?php echo htmlspecialchars($task['notes']); ?></textarea>
+                                <label for="existing_notes" class="form-label text-secondary text-decoration-underline">Task Notes</label>
+                                <textarea id="existing_notes" name="existing_notes" class="form-control" rows="5" readonly><?php echo htmlspecialchars($task['notes']); ?></textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="new_note" class="form-label">Add a new note</label>
                                 <textarea id="new_note" name="new_note" class="form-control" rows="3"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary">Save Note</button>
+                            <button type="submit" name="submit_notes" class="btn btn-primary">Save Note</button>
+                            <a href="project.php?id=<?php echo htmlspecialchars($task['project_id']);?>"  class="btn btn-secondary" >Back to <?php echo htmlspecialchars($task['title']); ?></a>
                         </form>
                     </li>
                 </ul>
