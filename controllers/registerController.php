@@ -1,7 +1,7 @@
 <?php
 // Incluir los archivos necesarios
-require '../config/db.php';
-require '../models/user.php';
+require_once '../config/db.php';
+require_once '../models/user.php';
 session_start(); // Iniciar la sesión
 
 // Verificar si el formulario fue enviado

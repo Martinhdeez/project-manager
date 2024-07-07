@@ -1,5 +1,5 @@
 <?php
-require("../parts/header.php");
+require_once("../parts/header.php");
 ?>
     <div class="container mt-5">
         <form action="../controllers/registerController.php" class="form" method="post">

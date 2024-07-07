@@ -1,8 +1,7 @@
 <?php
-    require __DIR__ . '/../config/db.php';
+    require_once __DIR__ . '/../config/db.php';
 
-    define('BASE_URL', '/project_manager'); 
-     // Define la URL base de tu aplicación
+    define('BASE_URL', '/project_manager'); // Define la URL base de tu aplicación
 function displayProjects($userId) {
     $database = new Db();
     $db = $database->connect(); // devuelve conn
@@ -33,14 +32,9 @@ function success() {
 
 }
 
-function displayTasks($projectId){
-
-    $database = new Db();
-    $db = $database->connect();//devuelve conn
-    $result = $db->query("SELECT * FROM tasks WHERE project_id = " .$projectId);//prepara consula para obtener las tareas del proyecto
-
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {//bucle para mostrar todos los proyectos del usuario
-    echo "<li><a href='" . BASE_URL . "/views/task.php?id=" . $row['id'] . "'>" . htmlspecialchars($row['title']) . "</a></li>";//cada proyecto del usuario
+function displayTasks($tasks){
+    foreach ($tasks as $task) {
+    echo "<li class='list-group-item'>" . htmlspecialchars($task['title'])."</li>";
     }
 }
 

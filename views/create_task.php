@@ -1,5 +1,5 @@
 <?php 
-require '../auth/auth.php'; 
+require_once'../auth/auth.php'; 
 require '../parts/header.php';
 ?>
     <div class="container mt-5">
