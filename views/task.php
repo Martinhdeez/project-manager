@@ -65,7 +65,6 @@
                     </li>
 
                     <li class="list-group-item">
-
                         <strong>Notes:</strong>
                         <form action="../controllers/notesController.php" method="post">
                             <input type="hidden" name="id" value="<?php echo $taskId; ?>">
@@ -78,14 +77,13 @@
                                 <textarea id="new_note" name="new_note" class="form-control" rows="3"></textarea>
                             </div>
                             <button type="submit" name="submit_notes" class="btn btn-primary">Save Note</button>
-                            
-                            <form action="../controllers/deleteTaskController.php" method="post">
-                                <input type="hidden" name="project_id" value="<?php echo htmlspecialchars($task['project_id']); ?>">
-                                <input type="hidden" name="id" value="<?php echo $taskId; ?>">
-                                <button type="submit" class="btn btn-danger ml-2">Delete Task</button>
-                            </form>
-                            <a href="project.php?id=<?php echo htmlspecialchars($task['project_id']);?>"  class="btn btn-secondary mt-2" >Back to <?php echo htmlspecialchars($task['title']); ?></a>
                         </form>
+                        <form action="../controllers/deleteTaskController.php" method="post" class="mt-2">
+                            <input type="hidden" name="project_id" value="<?php echo htmlspecialchars($task['project_id']); ?>">
+                            <input type="hidden" name="id" value="<?php echo $taskId; ?>">
+                            <button type="submit" class="btn btn-danger">Delete Task</button>
+                        </form>
+                        <a href="project.php?id=<?php echo htmlspecialchars($task['project_id']);?>" class="btn btn-secondary mt-2">Back to Project</a>
                     </li>
                 </ul>
             </div>
