@@ -13,7 +13,7 @@ require 'parts/header.php';
             
             <h2 class="mt-5 mb-3">Your Projects</h2>
             <?php success(); ?>
-            <a href="views/create_project.php" class="btn btn-primary mb-3">Create New Project</a>
+            <a href="views/project.php?isNew=true" class="btn btn-primary mb-3">Create New Project</a>
             <br>
             <br>
             <ul  class="row list-unstyled" id="projects-container">
