@@ -1,91 +1,114 @@
 <?php
-    require_once '../auth/auth.php';
-    require_once '../config/db.php';
+require_once '../auth/auth.php';
+require_once '../config/db.php';
+require_once '../includes/functions.php';
 
-    if(!isset($_GET['id'])){
-        die('Task ID is missing.');
+$projectId = $_GET['project_id'] ?? null;
+$isNew = isset($_GET['isNew']);
+
+// Conexión a la base de datos
+$database = new Db();
+$db = $database->connect();
+
+if ($isNew) {
+    // Inicializar variables para nueva tarea
+    $task = [
+        'id' => '',
+        'title' => '',
+        'description' => '',
+        'project_id' => $projectId,
+        'end_date' => '',
+        'priority' => 'Medium',
+        'notes' => '',
+        'tags' => '',
+        'status' => 'Pending'
+    ];
+
+    // Insertar variables inicializadas en la base de datos y obtener el ID de la nueva tarea
+    $stmt = $db->prepare("INSERT INTO tasks (title, description, project_id, end_date, priority, notes, tags, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->execute([$task['title'], $task['description'], $task['project_id'], $task['end_date'], $task['priority'], $task['notes'], $task['tags'], $task['status']]);
+
+    // Obtener el ID de la nueva tarea creada
+    $taskId = $db->lastInsertId();
+    $task['id'] = $taskId;
+} else {
+    $taskId = $_GET['id'] ?? null;
+    if (!$taskId) {
+        die('Task not found');
     }
-    $taskId = $_GET['id'];
-    
-    $database= new Db();
-    $db= $database->connect();
-
-    // Añadir depuración para verificar el ID de la tarea
-    error_log("Task ID: " . $taskId);
 
     $stmt = $db->prepare("SELECT * FROM tasks WHERE id= ?");
     $stmt->execute([$taskId]);
     $task = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$task) {
+        die('Task not found.');
+    }
+}
 
+require_once '../parts/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo htmlspecialchars($task['title']);?></title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-</head>
-<body>
+
+
     <div class="container mt-5">
         <div class="card">
             <div class="card-body">
-                <h2 class="card-title"><?php echo htmlspecialchars($task['title']);?></h2>
-                <p class="card-text"><?php echo htmlspecialchars($task['description']);?></p>
+                <h2 class="card-title text-center"><?= $isNew ? 'Create New Task' : 'Edit Task'; ?></h2>
+                <?php success(); ?>
+                <form action="../controllers/taskController.php?action=save" method="post">
+                    <input type="hidden" name="id" value="<?= htmlspecialchars($task['id']); ?>">
+                    <input type="hidden" name="project_id" value="<?= htmlspecialchars($task['project_id']); ?>">
+                    <div class="form-group">
+                        <label for="title">Task Title:</label>
+                        <input type="text" id="title" name="title" class="form-control" required value="<?= htmlspecialchars($task['title']); ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <textarea id="description" name="description" class="form-control"><?= htmlspecialchars($task['description']); ?></textarea>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="end_date">End Date:</label>
+                        <input type="date" name="end_date" id="end_date" class="form-control" value="<?= htmlspecialchars($task['end_date']); ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="priority">Priority:</label>
+                        <select id="priority" name="priority" class="form-control">
+                            <option value="Low" <?= $task['priority'] === 'Low' ? 'selected' : ''; ?>>Low</option>
+                            <option value="Medium" <?= $task['priority'] === 'Medium' ? 'selected' : ''; ?>>Medium</option>
+                            <option value="High" <?= $task['priority'] === 'High' ? 'selected' : ''; ?>>High</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tags" class="form-label">Tags (comma separated): </label>
+                        <input type="text" class="form-control" id="tags" name="tags" placeholder="ex: work,urgent,home" value="<?= htmlspecialchars($task['tags']); ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status:</label>
+                        <select id="status" name="status" class="form-control">
+                            <option value="Pending" <?= $task['status'] === 'Pending' ? 'selected' : ''; ?>>Pending</option>
+                            <option value="Completed" <?= $task['status'] === 'Completed' ? 'selected' : ''; ?>>Completed</option>
+                        </select>
+                    </div>
 
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                        <strong>Status:</strong> <?php echo htmlspecialchars($task['status']); ?>
-                    </li>
+                    <div class="form-group">
+                        <label for="notes">Notes:</label>
+                        <textarea id="notes" name="notes" class="form-control"><?= htmlspecialchars($task['notes']); ?></textarea>
+                    </div>
 
-                    <li class="list-group-item">
-                        <strong>Created At:</strong> <?php echo htmlspecialchars($task['created_at']); ?>
-                    </li>
-
-                    <li class="list-group-item">
-                        <strong>End Date:</strong> <?php echo htmlspecialchars($task['end_date']); ?>
-                    </li>
-
-                    <li class="list-group-item">
-                        <strong>Priority:</strong> <span class="badge bg-primary"><?php echo htmlspecialchars($task['priority']); ?></span>
-                    </li>
-
-                    <li class="list-group-item">
-                        <strong>Tags:</strong> 
-                        <?php 
-                        $tags = explode(',', $task['tags']);
-                        foreach($tags as $tag) {
-                            echo '<span class="badge bg-info me-1">' . htmlspecialchars($tag) . '</span>';
-                        }
-                        ?>
-                    </li>
-
-                    <li class="list-group-item">
-                        <strong>Notes:</strong>
-                        <form action="../controllers/notesController.php" method="post">
-                            <input type="hidden" name="id" value="<?php echo $taskId; ?>">
-                            <div class="mb-3">
-                                <label for="existing_notes" class="form-label text-secondary text-decoration-underline">Task Notes</label>
-                                <textarea id="existing_notes" name="existing_notes" class="form-control" rows="5" readonly><?php echo htmlspecialchars($task['notes']); ?></textarea>
-                            </div>
-                            <div class="mb-3">
-                                <label for="new_note" class="form-label">Add a new note</label>
-                                <textarea id="new_note" name="new_note" class="form-control" rows="3"></textarea>
-                            </div>
-                            <button type="submit" name="submit_notes" class="btn btn-primary">Save Note</button>
-                        </form>
-                        <form action="../controllers/deleteTaskController.php" method="post" class="mt-2">
-                            <input type="hidden" name="project_id" value="<?php echo htmlspecialchars($task['project_id']); ?>">
-                            <input type="hidden" name="id" value="<?php echo $taskId; ?>">
-                            <button type="submit" class="btn btn-danger">Delete Task</button>
-                        </form>
-                        <a href="project.php?id=<?php echo htmlspecialchars($task['project_id']);?>" class="btn btn-secondary mt-2">Back to Project</a>
-                    </li>
-                </ul>
+                    <button type="submit" class="btn btn-success"><?= $isNew ? 'Create Task' : 'Update Task'; ?></button>
+                    <a href="project.php?id=<?= htmlspecialchars($task['project_id']); ?>" class="btn btn-secondary">Back to Project</a>
+                </form>
+                <?php if (!$isNew): ?>
+                    <form action="../controllers/taskController.php?action=delete" method="post" class="mt-2">
+                        <input type="hidden" name="project_id" value="<?= htmlspecialchars($task['project_id']); ?>">
+                        <input type="hidden" name="id" value="<?= $taskId; ?>">
+                        <button type="submit" class="btn btn-danger">Delete Task</button>
+                    </form>
+                <?php endif; ?>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+ozpOn60pT9mYxIvC/N2JhvByj3Kd" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0sG1M5b4hcpxyD9F7jL+ozpOn60pT9mYxIvC/N2JhvByj3Kd" crossorigin="anonymous"></script>
 </body>
 </html>

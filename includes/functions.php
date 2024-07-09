@@ -39,10 +39,11 @@ function displayTasks($tasks) {
         <form action='../controllers/statusTaskController.php' method='post' class='mt-2'>
             <input type='hidden' name='id' value='" . $task['id'] . "'>
             <input type='hidden' name='project_id' value='" . $task['project_id'] . "'>
-            <div class='form-check'>
-                <input class='form-check-input aling-item-left' type='checkbox' name='is_completed' id='is_completed_" . $task['id'] . "' value='1' " . ($task['status'] == 'Completed' ? "checked" : '') . ">
-            </div>
-            <a href='task.php?id=" . $task['id'] . "' class='d-flex justify-content-between align-items-center w-100 text-decoration-none text-dark'>
+            <a href='task.php?id=" . $task['id'] . "' class='d-flex justify-content-between align-items-center w-100 text-decoration-none text-dark'>    
+                <div class='form-check'>
+                    <input class='form-check-input aling-item-left' type='checkbox' name='is_completed' id='is_completed_" . $task['id'] . "' value='1' " . ($task['status'] == 'Completed' ? "checked" : '') . ">
+                </div>
+            
                 <span id='task_title' class='flex-grow-1 text-center'>" . htmlspecialchars($task['title']) . "</span>
                 <div class='d-flex align-items-center'>";
                     foreach($tags as $tag) {
