@@ -17,10 +17,6 @@
     $stmt->execute([$taskId]);
     $task = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if (!$task) {
-        error_log("Task not found for ID: " . $taskId);
-        die('Task not found.');
-    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
