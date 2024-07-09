@@ -33,29 +33,33 @@ function success() {
 }
 
 function displayTasks($tasks) {
+    echo "<ul class='list-group'>";
     foreach ($tasks as $task) {
         $tags = explode(',', $task['tags']);
         echo "<li id='task' class='list-group-item list-group-item-action d-flex justify-content-between align-items-center'>
-        <form action='../controllers/statusTaskController.php' method='post' class='mt-2'>
+        <form action='../controllers/statusTaskController.php' method='post' class='w-100'>
             <input type='hidden' name='id' value='" . $task['id'] . "'>
             <input type='hidden' name='project_id' value='" . $task['project_id'] . "'>
-            <a href='task.php?id=" . $task['id'] . "' class='d-flex justify-content-between align-items-center w-100 text-decoration-none text-dark'>    
-                <div class='form-check'>
-                    <input class='form-check-input aling-item-left' type='checkbox' name='is_completed' id='is_completed_" . $task['id'] . "' value='1' " . ($task['status'] == 'Completed' ? "checked" : '') . ">
+            <div class='d-flex align-items-center w-100'>
+                <div class='form-check me-3'>
+                    <input class='form-check-input' type='checkbox' name='is_completed' id='is_completed_" . $task['id'] . "' value='1' " . ($task['status'] == 'Completed' ? "checked" : '') . ">
                 </div>
-            
-                <span id='task_title' class='flex-grow-1 text-center'>" . htmlspecialchars($task['title']) . "</span>
-                <div class='d-flex align-items-center'>";
-                    foreach($tags as $tag) {
-                        echo "<span class='badge bg-info me-4'>" . htmlspecialchars($tag) . "</span>";
-                    }
-                    echo "<span class='badge bg-primary me-4'>" . htmlspecialchars($task['priority']) . "</span>
+                <a href='task.php?id=" . $task['id'] . "' class='flex-grow-1 text-decoration-none text-dark d-flex justify-content-between align-items-center'>
+                    <span id='task_title' class='task-title'>" . htmlspecialchars($task['title']) . "</span>
+                    <div class='d-flex align-items-center'>";
+                        foreach($tags as $tag) {
+                            echo "<span class='badge bg-info me-2'>" . htmlspecialchars($tag) . "</span>";
+                        }
+                        echo "<span class='badge bg-primary me-2'>" . htmlspecialchars($task['priority']) . "</span>
                         <span class='text-muted'>" . htmlspecialchars($task['end_date']) . "</span>
-                </div>
-            </a>
+                    </div>
+                </a>
+            </div>
         </form>
         </li>";
     }
+    echo "</ul>";
 }
+
 
     
