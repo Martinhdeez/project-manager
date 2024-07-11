@@ -37,12 +37,12 @@ function displayTasks($tasks) {
     foreach ($tasks as $task) {
         $tags = explode(',', $task['tags']);
         echo "<li id='task' class='list-group-item list-group-item-action d-flex justify-content-between align-items-center'>
-        <form action='../controllers/statusTaskController.php' method='post' class='w-100'>
+        <form class='w-100'>
             <input type='hidden' name='id' value='" . $task['id'] . "'>
             <input type='hidden' name='project_id' value='" . $task['project_id'] . "'>
             <div class='d-flex align-items-center w-100'>
                 <div class='form-check me-3'>
-                    <input class='form-check-input' type='checkbox' name='is_completed' id='is_completed_" . $task['id'] . "' value='1' " . ($task['status'] == 'Completed' ? "checked" : '') . ">
+                    <input class='form-check-input task-checkbox' type='checkbox' name='is_completed' id='is_completed_" . $task['id'] . "' value='Completed' " . ($task['status'] == 'Completed' ? "checked" : '') . " data-task-id='" . $task['id'] . "'>
                 </div>
                 <a href='task.php?id=" . $task['id'] . "' class='flex-grow-1 text-decoration-none text-dark d-flex justify-content-between align-items-center'>
                     <span id='task_title' class='task-title'>" . htmlspecialchars($task['title']) . "</span>
@@ -60,6 +60,7 @@ function displayTasks($tasks) {
     }
     echo "</ul>";
 }
+
 
 
     

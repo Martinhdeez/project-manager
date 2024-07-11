@@ -127,16 +127,22 @@ if ($isNew) {
     }
 }
 if(!$isNew){
-    // Obtener las tareas del proyecto
+    //Obtener las tareas del proyecto
     $stmt = $db->prepare("SELECT * FROM tasks WHERE project_id = ?");
     $stmt->execute([$projectId]);
     $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-
-
-require_once "../parts/header.php";
 ?>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="/project_manager/css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title><?= htmlspecialchars($project['title']) ?></title>
+</head>
 <body>
     <div class="xdashboard container">
         <form action="project.php<?php echo $isNew ? '?isNew=true' : '?id=' . $projectId; ?>" method="post" enctype="multipart/form-data">
@@ -170,7 +176,37 @@ require_once "../parts/header.php";
             </form>
         <?php endif; ?>
         <a href="../index.php" class="btn btn-secondary">Back to Projects</a>
+    
+        <script>
+            $(document).ready(function(){
+                $('.task-checkbox').on('change', function() {
+                    var taskId = $(this).data('task-id');
+                    var isCompleted = $(this).is(':checked');
+                    
+                    $.ajax({
+                        url: '../controllers/statusTaskController.php',
+                        type: 'POST',
+                        data: {
+                            id: taskId,
+                            is_completed: isCompleted
+                        },
+                        success: function(response) {
+                            var result = JSON.parse(response);
+                            if (result.status === 'success') {
+                                console.log('Task status updated successfully');
+                            } else {
+                                console.log('Failed to update task status');
+                            }
+                        },
+                        error: function() {
+                            console.log('Error occurred while updating task status');
+                        }
+                    });
+                });
+            });
+        </script>
     </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0sG1M5b4hcpxyD9F7jL+O2eF0LgPpLTn8K0q5r5a5Y7rbHp" crossorigin="anonymous"></script>
 </body>
