@@ -23,6 +23,7 @@ require_once("../includes/functions.php");
             <button type="submit" name="login_submit" class="btn btn-primary">Login</button>
             <a href="register.php" class="btn btn-link">You still do not have an account?</a>
         </form>
+        <a href="request_reset.php">Have you forgot the password?</a>
         <script src="../js/showPasword.js"></script>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

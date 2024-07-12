@@ -45,7 +45,7 @@ function displayTasks($tasks) {
                     <input class='form-check-input task-checkbox' type='checkbox' name='is_completed' id='is_completed_" . $task['id'] . "' value='Completed' " . ($task['status'] == 'Completed' ? "checked" : '') . " data-task-id='" . $task['id'] . "'>
                 </div>
                 <a href='task.php?id=" . $task['id'] . "' class='flex-grow-1 text-decoration-none text-dark d-flex justify-content-between align-items-center'>
-                    <span id='task_title' class='task-title'>" . htmlspecialchars($task['title']) . "</span>
+                    <span id='task_title' class='task-title' " . ($task['status'] == 'Completed' ? "style='text-decoration: line-through;'" : '') . ">" . htmlspecialchars($task['title']) . "</span>
                     <div class='d-flex align-items-center'>";
                         foreach($tags as $tag) {
                             echo "<span class='badge bg-info me-2'>" . htmlspecialchars($tag) . "</span>";
@@ -61,6 +61,9 @@ function displayTasks($tasks) {
     echo "</ul>";
 }
 
-
+function sendMail($to, $subject, $message) {
+    // Simple mail function (you may want to use a library for better email handling)
+    mail($to, $subject, $message);
+}
 
     
