@@ -17,6 +17,7 @@ if (isset($_POST['register_submit'])) {
         $user->username = $_POST['username'];
         $user->email = $_POST['email'];
         $user->password = $_POST['password'];
+        $confirmPass = $_POST['confirm_password'];
 
         // Almacenar los datos del formulario en la sesión
         $_SESSION['form_data'] = [
@@ -24,26 +25,31 @@ if (isset($_POST['register_submit'])) {
             'email' => $_POST['email']
         ];
 
-        // Llamar al método register del modelo User
-        $result = $user->register();
+        // Verificar si las contraseñas coinciden
+        if ($user->password === $confirmPass) {
+            // Llamar al método register del modelo User
+            $result = $user->register();
 
-        // Verificar si el registro fue exitoso
-        if ($result === true) {
-            // Limpiar los datos del formulario de la sesión
-            unset($_SESSION['form_data']);
-            // Redirigir al usuario a la página de inicio de sesión con un mensaje de éxito
-            $_SESSION['success'] = "Registration successful! Please log in.";
-            header("Location: ../views/login.php?registration=success");
-            exit();
+            // Verificar si el registro fue exitoso
+            if ($result === true) {
+                // Limpiar los datos del formulario de la sesión
+                unset($_SESSION['form_data']);
+                // Redirigir al usuario a la página de inicio de sesión con un mensaje de éxito
+                $_SESSION['success'] = "¡Registro exitoso! Por favor, inicia sesión.";
+                header("Location: ../views/login.php?registration=success");
+                exit();
+            } else {
+                // Almacenar el mensaje de error en la sesión
+                $_SESSION['error'] = $result;
+            }
         } else {
-            //mensaje de error
-            $_SESSION['error'] = $result; // Almacenar el mensaje de error en la sesión
+            $_SESSION['error'] = "Las contraseñas no coinciden.";
         }
     } else {
-        $_SESSION['error'] = "Failed to connect to the database."; // Mensaje de error si la conexión falla
+        $_SESSION['error'] = "Error al conectar con la base de datos."; // Mensaje de error si la conexión falla
     }
+
+    header("Location: ../views/register.php"); // Redirigir de vuelta a la página de registro para mostrar el mensaje
+    exit();
 }
-
-header("Location: ../views/register.php"); // Redirigir de vuelta a la página de registro para mostrar el mensaje
-exit();
-
+?>
