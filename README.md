@@ -1,4 +1,4 @@
--This is projects repository in which it can create projects with a cover an some parameters(title, description...). 
+-This is a repository of projects in which it can create projects with a cover an some parameters(title, description...). 
 
 -Futhermore in which project it can create tasks with some paremters(tags, descriptions, dates, notes...) too. 
 
