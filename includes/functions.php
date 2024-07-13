@@ -62,7 +62,7 @@ function displayTasks($tasks) {
 }
 
 function sendMail($to, $subject, $message) {
-    // Simple mail function (you may want to use a library for better email handling)
+    //  mail function 
     mail($to, $subject, $message);
 }
 
