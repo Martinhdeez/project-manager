@@ -3,7 +3,7 @@ require_once("../parts/header.php");
 require_once("../includes/functions.php");
 ?>
     <div class="container mt-5">
-        <form action="../controllers/LoginController.php" class="form" method="post">
+        <form action="../controllers/loginController.php" class="form" method="post">
             <h2 class="mb-4">User Login</h2>
             <?php
                 session_start();
