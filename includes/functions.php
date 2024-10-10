@@ -1,7 +1,7 @@
 <?php
     require_once __DIR__ . '/../config/db.php';
 
-    define('BASE_URL', '/project_manager'); // Define la URL base de tu aplicación
+    define('BASE_URL', '/project-manager'); // Define la URL base de tu aplicación
 function displayProjects($userId) {
     $database = new Db();
     $db = $database->connect(); // devuelve conn
