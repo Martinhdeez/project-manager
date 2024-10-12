@@ -17,7 +17,7 @@ if ($isNew) {
         'title' => '',
         'description' => '',
         'project_id' => $projectId,
-        'end_date' => '',
+        'end_date' => '0000-00-00',
         'priority' => 'Medium',
         'notes' => '',
         'tags' => '',
