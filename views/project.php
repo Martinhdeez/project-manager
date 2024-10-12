@@ -165,8 +165,7 @@ if(!$isNew){
         </form>
         <?php if (!$isNew): ?>
             <h3>Tasks</h3>
-            <?php success(); echo "PROJECT_ID= ".$projectId;?>
-            
+            <?php success();?>
             <a href="task.php?isNew=true&project_id=<?php echo $projectId;?>" class="btn btn-success mb-3">Create New Task</a>
             <ul class="list-group mb-3">
                 <?php displayTasks($tasks); ?>
