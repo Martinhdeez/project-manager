@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    header("Location: ../views/task.php?id=" . $taskId);
+    header("Location: ../views/project.php?id=".$project_id);
     exit();
 }
 ?>

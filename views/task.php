@@ -72,7 +72,7 @@ require_once '../parts/header.php';
                     <br>
                     <div class="form-group">
                         <label for="end_date">End Date:</label>
-                        <input type="date" name="end_date" id="end_date" class="form-control" value="<?= htmlspecialchars($task['end_date']); ?>">
+                        <input type="date" name="end_date" id="end_date" class="form-control" value="<?= htmlspecialchars($task['end_date']); ?> required">
                     </div>
                     <div class="form-group">
                         <label for="priority">Priority:</label>
@@ -105,7 +105,7 @@ require_once '../parts/header.php';
                 <?php if (!$isNew): ?>
                     <form action="../controllers/taskController.php?action=delete" method="post" class="mt-2">
                         <input type="hidden" name="project_id" value="<?= htmlspecialchars($task['project_id']); ?>">
-                        <input type="hidden" name="id" value="<?= $taskId; ?>">
+                        <input type="hidden" name="id" value="<?= $task['id']; ?>">
                         <button type="submit" class="btn btn-danger">Delete Task</button>
                     </form>
                 <?php endif; ?>
