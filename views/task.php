@@ -23,10 +23,14 @@ if ($isNew) {
         'tags' => '',
         'status' => 'Pending'
     ];
-
-    // Insertar variables inicializadas en la base de datos y obtener el ID de la nueva tarea
+    try{
+        // Insertar variables inicializadas en la base de datos y obtener el ID de la nueva tarea
     $stmt = $db->prepare("INSERT INTO tasks (title, description, project_id, end_date, priority, notes, tags, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt->execute([$task['title'], $task['description'], $task['project_id'], $task['end_date'], $task['priority'], $task['notes'], $task['tags'], $task['status']]);
+    }catch(PDOException $e){
+        echo "Error creating a new task: ". $e->getMessage();
+    }
+    
 
     // Obtener el ID de la nueva tarea creada
     $taskId = $db->lastInsertId();

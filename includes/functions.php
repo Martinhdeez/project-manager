@@ -10,7 +10,7 @@ function displayProjects($userId) {
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) { // bucle para mostrar todos los proyectos del usuario
         echo "
         <li class='col-12 col-sm-6 col-md-4 project' id='project'>
-        <a href='" . BASE_URL . "/views/project.php?id=" . $row['id'] . " class= 'list-group-item-action text-black fw-bold fs-5'>
+        <a href='" . BASE_URL . "/views/project.php?id=" . $row['id'] . "' class= 'list-group-item-action text-black fw-bold fs-5'>
         <img src='" . BASE_URL . "/project_covers/" . $row['cover_name'] . "' class='img-fluid me-2'>
         " . htmlspecialchars($row['title']) . "
         </a>
