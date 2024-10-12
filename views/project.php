@@ -171,7 +171,7 @@ if(!$isNew){
                 <?php displayTasks($tasks); ?>
             </ul>
             <form action="../controllers/deleteProjectController.php" method="post">
-                <input type="hidden" name="project_id" value="<?php echo $projectId; ?>">
+                <input type="hidden" name="project_id" value="<?php echo $projectId;?>">
                 <button type="submit" class="btn btn-danger">Delete Project</button>
             </form>
         <?php endif; ?>
