@@ -13,7 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $title = $_POST['title'];
     $description = $_POST['description'];
     $project_id = $_POST['project_id'];
-    $end_date = $_POST['end_date'];
+    // Obtener la fecha de finalización del formulario
+    $end_date = !empty($_POST['end_date']) ? $_POST['end_date'] : date('Y-m-d');
     $priority = $_POST['priority'];
     $notes = $_POST['notes'];
     $tags = $_POST['tags'];
@@ -34,6 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } elseif ($action == 'save') {
         // Crear nueva tarea
         try {
+
             $stmt = $db->prepare("INSERT INTO tasks (title, description, project_id, end_date, priority, tags, status, notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             if ($stmt->execute([$title, $description, $project_id, $end_date, $priority, $tags, $status, $notes])) {
                 $_SESSION['success'] = "Task created successfully!";

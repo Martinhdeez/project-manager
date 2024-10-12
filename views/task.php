@@ -17,12 +17,13 @@ if ($isNew) {
         'title' => '',
         'description' => '',
         'project_id' => $projectId,
-        'end_date' => '0000-00-00',
+        'end_date' => '',
         'priority' => 'Medium',
         'notes' => '',
         'tags' => '',
         'status' => 'Pending'
     ];
+    $task['end_date'] =  date('Y-m-d H:i:s');  // Formato válido
     try{
         // Insertar variables inicializadas en la base de datos y obtener el ID de la nueva tarea
     $stmt = $db->prepare("INSERT INTO tasks (title, description, project_id, end_date, priority, notes, tags, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
